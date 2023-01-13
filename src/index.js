@@ -2,16 +2,20 @@
 
 import { readFileSync } from 'node:fs'
 import _ from 'lodash'
+import path from 'path'
 
 const genDiff = (filepath1, filepath2) => {
-  const file1 = readFileSync(filepath1, 'utf-8');
-  const file2 = readFileSync(filepath2, 'utf-8');
+  const getFullPath1 = path.resolve(process.cwd(), filepath1);
+  const getFullPath2 = path.resolve(process.cwd(), filepath2); 
+console.log(getFullPath1);
+  const file1 = readFileSync(getFullPath1, 'utf-8').trim();
+  const file2 = readFileSync(getFullPath2, 'utf-8').trim();
 
-  const data1 = JSON.parse(file1);
-  const data2 = JSON.parse(file2);
+  const data1 = JSON.parse(file1)
+  const data2 = JSON.parse(file2)
 
-  const keys1 = Object.keys(data1);
-  const keys2 = Object.keys(data2);
+  const keys1 = Object.keys(data1)
+  const keys2 = Object.keys(data2)
   const keys = _.union(keys1, keys2)
   const tree = keys.map((key) => {
     if (!_.has(data1, key)) {
@@ -54,6 +58,6 @@ const genDiff = (filepath1, filepath2) => {
     }
     return result
   }, [])
-  return maketree.join('\n');
+  return maketree.join('\n')
 }
 export default genDiff

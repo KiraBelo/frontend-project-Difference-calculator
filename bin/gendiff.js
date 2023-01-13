@@ -3,7 +3,7 @@
 import genDiff from '../src/index.js'
 import { Command } from 'commander'
 
-const program = new Command();
+const program = new Command()
 program
   .name('gendiff')
   .version('0.1.0', '-V --version', 'output the version number')
@@ -13,6 +13,6 @@ program
   .argument('<filepath1>', 'path to file1')
   .argument('<filepath2>', 'path to file2')
   .action((filepath1, filepath2) => {
-      console.log(genDiff(filepath1, filepath2))
+    console.log(genDiff(filepath1, filepath2))
   })
-.parse();
+  .parse()
