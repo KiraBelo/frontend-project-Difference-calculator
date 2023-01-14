@@ -1,20 +1,27 @@
 #!/usr/bin/env node
 
-import { readFileSync } from 'node:fs'
+import * as fs from 'node:fs'
 import _ from 'lodash'
 import path, { dirname } from 'path'
+
 import { fileURLToPath } from 'node:url'
 
 const genDiff = (filename1, filename2) => {
   const __filename = fileURLToPath(import.meta.url)
-  console.log(__filename)
   const __dirname = dirname(__filename)
   const getFixturePath = (filename) => path.join(__dirname, '..', '__fixtures__', filename)
 
   const getFullPath1 = getFixturePath(filename1)
   const getFullPath2 = getFixturePath(filename2)
-  const file1 = readFileSync(getFullPath1, 'utf-8').trim()
-  const file2 = readFileSync(getFullPath2, 'utf-8').trim()
+  /*  const extractFormat = (filePath) => path.extname(filePath).slice(1);
+
+    const formatName1 = extractFormat(filename1);
+    const formatName2 = extractFormat(filename2);
+    const file1 = fs.readFileSync(path.resolve(process.cwd(), formatName1), 'utf-8');
+    const file2 = fs.readFileSync(path.resolve(process.cwd(), formatName2), 'utf-8'); */
+
+  const file1 = fs.readFileSync(getFullPath1, 'utf-8').trim()
+  const file2 = fs.readFileSync(getFullPath2, 'utf-8').trim()
 
   const data1 = JSON.parse(file1)
   const data2 = JSON.parse(file2)
