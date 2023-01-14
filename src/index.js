@@ -6,8 +6,9 @@ import path, { dirname } from 'path'
 import { fileURLToPath } from 'node:url'
 
 const genDiff = (filename1, filename2) => {
-  const __filename = fileURLToPath(import.meta.url)
-  const __dirname = dirname(__filename)
+  const __filename = fileURLToPath(import.meta.url);
+    console.log(__filename);
+  const __dirname = dirname(__filename);
   const getFixturePath = (filename) => path.join(__dirname, '..', '__fixtures__', filename)
 
   const getFullPath1 = getFixturePath(filename1)
