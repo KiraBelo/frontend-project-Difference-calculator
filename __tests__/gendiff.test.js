@@ -7,8 +7,14 @@ const expected =
 - follow: false
 + verbose: true`
 
-describe('test with different files and formaters', () => {
+describe('test with json files', () => {
   test('testing gendiff', () => {
     expect(genDiff('file1.json', 'file2.json')).toEqual(expected)
+  })
+})
+
+describe('test with .yaml files', () => {
+  test('testing genDiff with .yaml files', () => {
+    expect(genDiff('file1.yml', 'file2.yml')).toEqual(expected)
   })
 })
