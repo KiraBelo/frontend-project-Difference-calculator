@@ -6,9 +6,9 @@ import parser from '../__fixtures__/parser.js'
 import { fileURLToPath } from 'node:url'
 
 const genDiff = (filename1, filename2) => {
-    const extractFormat = (filename) => path.extname(filename).slice(1);
-  const extention1 = extractFormat(filename1);
-  const extention2 = extractFormat(filename2);
+  const extractFormat = (filename) => path.extname(filename).slice(1)
+  const extention1 = extractFormat(filename1)
+  const extention2 = extractFormat(filename2)
 
   const __filename = fileURLToPath(import.meta.url)
   const __dirname = dirname(__filename)
