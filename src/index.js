@@ -1,12 +1,14 @@
 #!/usr/bin/env node
 import * as fs from 'node:fs'
-import _ from 'lodash'
 import path, { dirname } from 'path'
 import parser from '../__fixtures__/parser.js'
 import { fileURLToPath } from 'node:url'
+import getDifferences from './difference.js'
+import formatters from './formatter/index.js'
 
-const genDiff = (filename1, filename2) => {
+const genDiff = (filename1, filename2, format = 'stylish') => {
   const extractFormat = (filename) => path.extname(filename).slice(1)
+
   const extention1 = extractFormat(filename1)
   const extention2 = extractFormat(filename2)
 
@@ -22,51 +24,9 @@ const genDiff = (filename1, filename2) => {
 
   const data1 = parser(file1, extention1)
   const data2 = parser(file2, extention2)
+  const diff = getDifferences(data1, data2)
 
-  const keys1 = Object.keys(data1)
-  const keys2 = Object.keys(data2)
-  const keys = _.union(keys1, keys2)
-  const tree = keys.map((key) => {
-    if (!_.has(data1, key)) {
-      return { type: 'added', key, value: data2[key] }
-    }
-    if (!_.has(data2, key)) {
-      return { type: 'deleted', key, value: data1[key] }
-    }
-    if (data2[key] !== data1[key]) {
-      return {
-        type: 'changed', key, value1: data1[key], value2: data2[key]
-      }
-    }
-    return { type: 'notchanged', key, value: data1[key] }
-  })
-  const valueses = {
-    nested: '',
-    added: '+',
-    deleted: '-',
-    changed: ['-', '+']
-  }
-  const maketree = tree.reduce((result, item) => {
-    if (item.type === 'deleted') {
-      const string = `${valueses[item.type]} ${item.key}: ${item.value}`
-      result.push(string)
-    }
-    if (item.type === 'changed') {
-      const string1 = `${valueses[item.type][0]} ${item.key}: ${item.value1}`
-      const string2 = `${valueses[item.type][1]} ${item.key}: ${item.value2}`
-      result.push(string1)
-      result.push(string2)
-    }
-    if (item.type === 'added') {
-      const string = `${valueses[item.type]} ${item.key}: ${item.value}`
-      result.push(string)
-    };
-    if (item.type === 'notchanged') {
-      const string = `  ${item.key}: ${item.value}`
-      result.push(string)
-    }
-    return result
-  }, [])
-  return maketree.join('\n')
+  return formatters(diff, format)
 }
+
 export default genDiff
