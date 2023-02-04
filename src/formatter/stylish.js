@@ -4,28 +4,36 @@ import valueses from './valueses.js'
 const makeSpaces = (depth, spacesCount = 4) => ' '.repeat(depth * spacesCount - 2)
 
 const makeString = (data, depth = 1) => {
-  if (!_.isObject(data)) { return String(data) }
+  if (!_.isObject(data) || data === null) { return String(data) }
 
-  const lines = Object.entries(data).map(([key, value]) => `  ${makeSpaces(depth + 1)}${key}: ${makeString(value, depth + 1)}`)
-  const result = `{\n${lines.join('\n')}\n${makeSpaces(depth)}  }`
+  const lines = Object.entries(data).map(([key, value]) => `${makeSpaces(depth + 1)}  ${key}: ${makeString(value, depth + 1)}`)
+  const result = ['{', ...lines, `${makeSpaces(depth)}  }`].join('\n')
   return result
 }
 
-const formaterStylish = (differences, depth = 1) => {
-  const result = differences.map((item) => {
-    if (item.type === 'nested') {
-      return `${makeSpaces(depth)}${valueses[item.type]}${item.key}: ${makeString(formaterStylish(item.children, depth + 1))}${makeSpaces(depth)}  }`
-    } else if (item.type === 'deleted') {
-      return `${makeSpaces(depth)}${valueses[item.type]}${item.key}: ${makeString(item.value, depth)}`
-    } else if (item.type === 'changed') {
-      return `${makeSpaces(depth)}${valueses[item.type][0]}${item.key}: ${makeString(item.value1, depth)}\n${makeSpaces(depth)}${valueses[item.type][1]}${item.key}: ${makeString(item.value2, depth)}`
-    } else if (item.type === 'added') {
-      return `${makeSpaces(depth)}${valueses[item.type]}${item.key}: ${makeString(item.value, depth)}`
-    } else if (item.type === 'notchanged') {
-      return `${makeSpaces(depth)}${valueses[item.type]}${item.key}: ${makeString(item.value, depth)}`
+const formaterStylish = (tree) => {
+  const iter = (data, depth) => {
+    const types = data.type
+    const keys = data.key
+
+    switch (types) {
+      case 'nested': {
+        const nested = data.children
+        const children = nested.map((child) => iter(child, depth + 1))
+        return `${makeSpaces(depth)}${valueses[types]}${keys}: {\n${children.join('\n')}\n${makeSpaces(depth)}  }`
+      }
+      case 'deleted': return `${makeSpaces(depth)}${valueses[types]}${keys}: ${makeString(data.value, depth)}`
+      case 'changed': {
+        const str1 = `${makeSpaces(depth)}${valueses[types][0]}${keys}: ${makeString(data.value1, depth)}`
+        const str2 = `${makeSpaces(depth)}${valueses[types][1]}${keys}: ${makeString(data.value2, depth)}`
+        return [str1, str2].join('\n')
+      }
+      case 'added': return `${makeSpaces(depth)}${valueses[types]}${keys}: ${makeString(data.value, depth)}`
+      case 'notchanged' : return `${makeSpaces(depth)}${valueses[types]}${keys}: ${makeString(data.value, depth)}`
+      default: return `error: unknown type - ${types}`
     }
-    return `error: unknown type - ${item.type}`
-  })
-  return `\n${result.join('\n')}\n`
+  }
+  const result = tree.map((data) => iter(data, 1))
+  return ['{', ...result, '}'].join('\n').trimEnd()
 }
 export default formaterStylish
