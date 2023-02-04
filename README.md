@@ -5,4 +5,4 @@
 [![Test Coverage](https://api.codeclimate.com/v1/badges/7c2c2b81fb70bf614391/test_coverage)](https://codeclimate.com/github/KiraBelo/frontend-project-46/test_coverage)
 
   
-[![asciicast](https://asciinema.org/a/zF35LucmAi3Kwgu6WlYSFWGaU.svg)](https://asciinema.org/a/zF35LucmAi3Kwgu6WlYSFWGaU)
+[![asciicast](https://asciinema.org/a/Xg5iMtLtRwOzcBYFtdMPJheCG.svg)](https://asciinema.org/a/Xg5iMtLtRwOzcBYFtdMPJheCG)
