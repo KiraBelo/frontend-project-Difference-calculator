@@ -1,28 +1,34 @@
 import _ from 'lodash'
 
+const makeString = (data) => {
+  if (_.isObject(data)) { return '[complex value]' }
+  if (typeof data === 'string') { return `'${data}'` }
+  return String(data)
+}
+
 const formatPlain = (tree) => {
-  const makeString = (data) => {
-    return _.isObject(data) ? '[complex value]' : typeof data === 'string' ? `'${data}'` : String(data)
-  }
-
-  const actions = {
-    deleted: (allKeys) => `Property '${allKeys}' was removed`,
-    added: (allKeys, value) => `Property '${allKeys}' was added with value: ${makeString(value)}`,
-    changed: (allKeys, value1, value2) => `Property '${allKeys}' was updated. From ${makeString(value1)} to ${makeString(value2)}`,
-    nested: (allKeys, children) => children.filter((child) => child !== '').join('\n'),
-    notchanged: () => ''
-  }
-
   const iter = (data, parent) => {
-    const { type, key, value, value1, value2, children } = data
-    const allKeys = parent ? `${parent}.${key}` : `${key}`
-    return actions[type](allKeys, value, value1, value2, children.map((child) => iter(child, allKeys)))
+    const types = data.type
+    const keys = data.key
+    const allKeys = parent ? `${parent}.${keys}` : `${keys}`
+    switch (types) {
+      case 'deleted': return `Property '${allKeys}' was removed`
+      case 'added': return `Property '${allKeys}' was added with value: ${makeString(data.value)}`
+      case 'changed': return `Property '${allKeys}' was updated. From ${makeString(data.value1)} to ${makeString(data.value2)}`
+      case 'nested': {
+        const childrens = data.children
+          .map((child) => iter(child, allKeys))
+          .filter((child) => child !== '')
+        return `${childrens.join('\n')}`
+      }
+      case 'notchanged': return ''
+      default: return `error: unknown type - ${types}`
+    }
   }
-
-  return tree
+  const result = tree
     .map((data) => iter(data))
     .filter((data) => data !== '')
-    .join('\n')
+  return `${result.join('\n')}`
 }
 
 export default formatPlain
