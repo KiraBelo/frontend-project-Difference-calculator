@@ -6,7 +6,7 @@ import { fileURLToPath } from 'node:url'
 import getDifferences from './difference.js'
 import formatters from './formatter/index.js'
 
-const genDiff = (filename1, filename2, format = 'stylish') => {
+const gendiff = (filename1, filename2, format = 'stylish') => {
   const extractFormat = (filename) => path.extname(filename).slice(1)
 
   const extention1 = extractFormat(filename1)
@@ -29,4 +29,4 @@ const genDiff = (filename1, filename2, format = 'stylish') => {
   return formatters(diff, format)
 }
 
-export default genDiff
+export default gendiff
