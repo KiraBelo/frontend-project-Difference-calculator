@@ -1,5 +1,5 @@
 import _ from 'lodash'
-import valueses from './valueses.js'
+import values from './values.js'
 
 const makeSpaces = (depth, spacesCount = 4) => ' '.repeat(depth * spacesCount - 2)
 
@@ -20,16 +20,16 @@ const formaterStylish = (tree) => {
       case 'nested': {
         const nested = data.children
         const children = nested.map((child) => iter(child, depth + 1))
-        return `${makeSpaces(depth)}${valueses[types]}${keys}: {\n${children.join('\n')}\n${makeSpaces(depth)}  }`
+        return `${makeSpaces(depth)}${values[types]}${keys}: {\n${children.join('\n')}\n${makeSpaces(depth)}  }`
       }
-      case 'deleted': return `${makeSpaces(depth)}${valueses[types]}${keys}: ${makeString(data.value, depth)}`
+      case 'deleted': return `${makeSpaces(depth)}${values[types]}${keys}: ${makeString(data.value, depth)}`
       case 'changed': {
-        const str1 = `${makeSpaces(depth)}${valueses[types][0]}${keys}: ${makeString(data.value1, depth)}`
-        const str2 = `${makeSpaces(depth)}${valueses[types][1]}${keys}: ${makeString(data.value2, depth)}`
+        const str1 = `${makeSpaces(depth)}${values[types][0]}${keys}: ${makeString(data.value1, depth)}`
+        const str2 = `${makeSpaces(depth)}${values[types][1]}${keys}: ${makeString(data.value2, depth)}`
         return [str1, str2].join('\n')
       }
-      case 'added': return `${makeSpaces(depth)}${valueses[types]}${keys}: ${makeString(data.value, depth)}`
-      case 'notchanged' : return `${makeSpaces(depth)}${valueses[types]}${keys}: ${makeString(data.value, depth)}`
+      case 'added': return `${makeSpaces(depth)}${values[types]}${keys}: ${makeString(data.value, depth)}`
+      case 'notchanged' : return `${makeSpaces(depth)}${values[types]}${keys}: ${makeString(data.value, depth)}`
       default: return `error: unknown type - ${types}`
     }
   }
