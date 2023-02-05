@@ -1,8 +1,8 @@
 const valueses = {
-  nested: '  ',
-  added: '+ ',
-  deleted: '- ',
-  changed: ['- ', '+ '],
-  notchanged: '  '
+    nested: "  ",
+    added: "+ ",
+    deleted: "- ",
+    changed: ["- ", "+ "],
+    notchanged: "  "
 };
 export default valueses;
