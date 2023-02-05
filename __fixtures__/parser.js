@@ -1,13 +1,13 @@
-import yaml from 'js-yaml'
+import yaml from 'js-yaml';
 
 const parser = (file, extention) => {
-  let data
+  let data;
   switch (extention) {
-    case ('json'): data = JSON.parse(file); break
-    case ('yaml'): data = yaml.load(file); break
-    case ('yml'): data = yaml.load(file); break
-    default: data = 'you need choose json or yaml format'; break
+    case ('json'): data = JSON.parse(file); break;
+    case ('yaml'): data = yaml.load(file); break;
+    case ('yml'): data = yaml.load(file); break;
+    default: data = 'you need choose json or yaml format'; break;
   }
-  return data
-}
-export default parser
+  return data;
+};
+export default parser;

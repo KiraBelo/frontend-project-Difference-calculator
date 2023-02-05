@@ -4,5 +4,5 @@ const valueses = {
   deleted: '- ',
   changed: ['- ', '+ '],
   notchanged: '  '
-}
-export default valueses
+};
+export default valueses;
