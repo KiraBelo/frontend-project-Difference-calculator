@@ -13,10 +13,10 @@ const getDifferences = (data1, data2) => {
       return { type: 'nested', key, children: getDifferences(data1[key], data2[key]) };
     }
     if (_.isEqual(data1[key], data2[key])) {
-      return {
-        type: 'notchanged', key, value: data1[key] };
+      return { type: 'notchanged', key, value: data1[key] };
     } if (_.has(data1, key) && _.has(data2, key)) {
-      return { type: 'changed', key, value1: data1[key], value2: data2[key]
+      return {
+        type: 'changed', key, value1: data1[key], value2: data2[key],
       };
     } if (!_.has(data1, key)) {
       return { type: 'added', key, value: data2[key] };

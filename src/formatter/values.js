@@ -3,6 +3,6 @@ const valueses = {
   added: '+ ',
   deleted: '- ',
   changed: ['- ', '+ '],
-  notchanged: '  '
+  notchanged: '  ',
 };
 export default valueses;
