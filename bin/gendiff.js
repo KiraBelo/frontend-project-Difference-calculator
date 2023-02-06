@@ -5,14 +5,14 @@ import gendiff from '../src/index.js';
 
 const program = new Command();
 program
-    .name('gendiff')
-    .description('Compares two configuration files and show a difference')
-    .version('0.1.0', '-V --version', 'output the version number')
-    .helpOption('-h, --help', 'display help for command')
-    .option('-f, --format <type>', 'output format', 'stylish')
-    .argument('<filepath1>', 'path to file1')
-    .argument('<filepath2>', 'path to file2')
-    .action((filepath1, filepath2) => {
-        console.log(gendiff(filepath1, filepath2, program.opts().format));
-    })
-    .parse();
+  .name('gendiff')
+  .description('Compares two configuration files and show a difference')
+  .version('0.1.0', '-V --version', 'output the version number')
+  .helpOption('-h, --help', 'display help for command')
+  .option('-f, --format <type>', 'output format', 'stylish')
+  .argument('<filepath1>', 'path to file1')
+  .argument('<filepath2>', 'path to file2')
+  .action((filepath1, filepath2) => {
+    console.log(gendiff(filepath1, filepath2, program.opts().format));
+  })
+  .parse();
