@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 import fs from 'fs';
 import path from 'node:path';
-import parser from '../__fixtures__/parser.js';
+import parser from './parser.js';
 import getDifferences from './difference.js';
 import formatters from './formatter/index.js';
 

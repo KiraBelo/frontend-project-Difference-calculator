@@ -1,5 +1,12 @@
 import _ from 'lodash';
-import values from './values.js';
+
+const values = {
+  nested: '  ',
+  added: '+ ',
+  deleted: '- ',
+  changed: ['- ', '+ '],
+  notchanged: '  ',
+};
 
 const makeSpaces = (depth, spacesCount = 4) => ' '.repeat(depth * spacesCount - 2);
 
