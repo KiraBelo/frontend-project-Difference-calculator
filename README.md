@@ -22,29 +22,29 @@
 ## JSON
 `gendiff __fixtures__/file1.json __fixtures__/file2.json`
 
-[![asciicast](https://asciinema.org/a/z7aE7M4ndUdQyKvkssU9gUz1X.svg)](https://asciinema.org/a/z7aE7M4ndUdQyKvkssU9gUz1X)
+[![asciicast](https://asciinema.org/a/qSW8CaUeHN1kN4ZwGhPV6RpJu.svg)](https://asciinema.org/a/qSW8CaUeHN1kN4ZwGhPV6RpJu)
 
 ## YAML, YML
 `gendiff __fixtures__/file1.yml __fixtures__/file2.yml`
 
-[![asciicast](https://asciinema.org/a/6W6oZ3RYAaAIHdveqTl11h6Lt.svg)](https://asciinema.org/a/6W6oZ3RYAaAIHdveqTl11h6Lt)
+[![asciicast](https://asciinema.org/a/tOTgOgEoXZhYCY822almJEPcA.svg)](https://asciinema.org/a/tOTgOgEoXZhYCY822almJEPcA)
 
 ## Different output formats:
 ## plain
 `gendiff -f plain __fixtures__/file1.yml __fixtures__/file2.yml`
 
-[![asciicast](https://asciinema.org/a/6W6oZ3RYAaAIHdveqTl11h6Lt.svg)](https://asciinema.org/a/6W6oZ3RYAaAIHdveqTl11h6Lt)
+[![asciicast](https://asciinema.org/a/O9UGB0e51JHO0SFpynSdOf7Ks.svg)](https://asciinema.org/a/O9UGB0e51JHO0SFpynSdOf7Ks)
 
 ## JSON
 
-`gendiff -f json __fixtures__/file1.yml __fixtures__/file2.yml`
+`gendiff -f json __fixtures__/file1.json __fixtures__/file2.yml`
 
-[![asciicast](https://asciinema.org/a/yTpl4GSWcB6vaV8sRQTNVpffp.svg)](https://asciinema.org/a/yTpl4GSWcB6vaV8sRQTNVpffp)
+[![asciicast](https://asciinema.org/a/3Yq11UY3MaxTdbCyQPW80GcOt.svg)](https://asciinema.org/a/3Yq11UY3MaxTdbCyQPW80GcOt)
 
 ## Stylish
 
 `gendiff -f stylish __fixtures__/file1.json __fixtures__/file2.json`
 
-[![asciicast]( https://asciinema.org/a/7KjmU70GsWMrIRV0kA56nIYvo.svg)]( https://asciinema.org/a/7KjmU70GsWMrIRV0kA56nIYvo)
+[![asciicast](https://asciinema.org/a/Gf4Ol43fdSYNhFHGpvC3NJnTZ.svg)](https://asciinema.org/a/Gf4Ol43fdSYNhFHGpvC3NJnTZ)
 
 
