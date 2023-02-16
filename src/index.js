@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 import fs from 'fs';
 import path from 'node:path';
-import parser from './parser.js';
+import parse from './parser.js';
 import getDifferences from './difference.js';
 import formatters from './formatter/index.js';
 
@@ -18,8 +18,8 @@ const gendiff = (filepath1, filepath2, format = 'stylish') => {
   const fileData1 = fs.readFileSync(path1, 'utf-8').trim();
   const fileData2 = fs.readFileSync(path2, 'utf-8').trim();
 
-  const data1 = parser(fileData1, format1);
-  const data2 = parser(fileData2, format2);
+  const data1 = parse(fileData1, format1);
+  const data2 = parse(fileData2, format2);
   const diff = getDifferences(data1, data2);
   const formattedDiffs = formatters(diff, format);
 
