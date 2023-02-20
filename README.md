@@ -4,7 +4,7 @@
 [![Maintainability](https://api.codeclimate.com/v1/badges/7c2c2b81fb70bf614391/maintainability)](https://codeclimate.com/github/KiraBelo/frontend-project-46/maintainability)
 [![Test Coverage](https://api.codeclimate.com/v1/badges/7c2c2b81fb70bf614391/test_coverage)](https://codeclimate.com/github/KiraBelo/frontend-project-46/test_coverage)
 
- # Difference calculator
+ # Difference calculator :)
  
  Difference calculator is a program that perceives the difference between two data structures.
 
