@@ -6,11 +6,11 @@ const getKeys = (obj1, obj2) => {
   return _.sortBy(_.union(keys1, keys2));
 };
 
-const getDifferences = (data1, data2) => {
+const buildDiffs = (data1, data2) => {
   const keys = getKeys(data1, data2);
   const result = keys.map((key) => {
     if (_.isPlainObject(data1[key]) && _.isPlainObject(data2[key])) {
-      return { type: 'nested', key, children: getDifferences(data1[key], data2[key]) };
+      return { type: 'nested', key, children: buildDiffs(data1[key], data2[key]) };
     }
     if (_.isEqual(data1[key], data2[key])) {
       return { type: 'notchanged', key, value: data1[key] };
@@ -27,4 +27,4 @@ const getDifferences = (data1, data2) => {
   });
   return result;
 };
-export default getDifferences;
+export default buildDiffs;

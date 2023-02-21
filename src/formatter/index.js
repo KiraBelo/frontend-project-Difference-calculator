@@ -1,8 +1,8 @@
 import formatStylish from './stylish.js';
 import formatPlain from './plainformat.js';
 
-const getFormaters = (tree, format) => {
-  switch (format) {
+const format = (tree, outputFormat) => {
+  switch (outputFormat) {
     case 'json':
       return JSON.stringify(tree);
     case 'stylish':
@@ -12,4 +12,4 @@ const getFormaters = (tree, format) => {
     default: return Error(`Unknown format - ${format}`);
   }
 };
-export default getFormaters;
+export default format;
