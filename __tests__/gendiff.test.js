@@ -8,11 +8,11 @@ const __dirname = dirname(__filename);
 
 const getFixturePath = (filename) => path.join(__dirname, '..', '__fixtures__', filename);
 
-const readFile = (filename) => fs.readFileSync(getFixturePath(filename), 'utf-8');
+const readFixtureFile = (filename) => fs.readFileSync(getFixturePath(filename), 'utf-8');
 
-const outputPlain = readFile('resultPlain.txt').trim();
-const outputStylish = readFile('resultStylish.txt').trim();
-const outputJson = readFile('resultJson.txt').trim();
+const outputPlain = readFixtureFile('resultPlain.txt').trim();
+const outputStylish = readFixtureFile('resultStylish.txt').trim();
+const outputJson = readFixtureFile('resultJson.txt').trim();
 
 describe('difference calculator', () => {
   test('yml', () => {
