@@ -16,7 +16,7 @@ Utility Features:
 
 - The Node.js version was used in this project '18.6.0'
 - npm version '9.2.0'
-- 
+
 ## Instructions for starting the program
 
 1. Clone this project repository.
