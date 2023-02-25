@@ -5,12 +5,14 @@ import parse from './parser.js';
 import buildDiffs from './difference.js';
 import format from './formatter/index.js';
 
+const builtFullPath = (filepath) => path.resolve(process.cwd(), filepath);
+
+const getFormat = (filepath) => path.extname(filepath).slice(1);
+
 const readFile = (filepath) => {
-  const fullPath = path.resolve(process.cwd(), filepath);
-  const fileExtension = path.extname(filepath).slice(1);
-  const fileData = fs.readFileSync(fullPath, 'utf-8').trim();
-  const data = parse(fileData, fileExtension);
-  return data;
+  const fullPath = builtFullPath(filepath);
+  const fileFormat = getFormat(filepath);
+  return parse(fs.readFileSync(fullPath, 'utf-8').trim(), fileFormat);
 };
 
 const gendiff = (filepath1, filepath2, outputFormat = 'stylish') => {
