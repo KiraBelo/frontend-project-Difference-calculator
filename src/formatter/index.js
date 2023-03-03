@@ -1,15 +1,12 @@
 import formatStylish from './stylish.js';
-import formatPlain from './plainformat.js';
+import formatPlain from './plainFormat.js';
 
 const format = (tree, outputFormat) => {
-  switch (outputFormat) {
-    case 'json':
-      return JSON.stringify(tree);
-    case 'stylish':
-      return formatStylish(tree);
-    case 'plain':
-      return formatPlain(tree);
-    default: return Error(`Unknown format - ${format}`);
-  }
+  const formattes = {
+    json: JSON.stringify(tree),
+    stylish: formatStylish(tree),
+    plain: formatPlain(tree),
+  };
+  return formattes[outputFormat];
 };
 export default format;
